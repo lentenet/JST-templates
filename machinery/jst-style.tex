@@ -1,0 +1,78 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+%
+% Journal for Scripture & Theology Article Style Template -- http://scripturetheology.ca/
+%     LaTeX preamble for use with companion LaTeX templates and MultiMarkdown
+%     See the Readme.md file at https://github.com/scripturetheology/templates
+% Created by Daniel Driver (2011) -- http://danieldriver.com/
+% License: http://creativecommons.org/licenses/by-nc/3.0/
+%
+\documentclass[letterpaper,twoside]{article}
+\usepackage[textwidth=340pt,textheight=550pt,marginratio=340:550,includeheadfoot]{geometry}
+% 550 / 340 = 1.617647059 -- Mark 8:18
+%
+% Other useful packages
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{xcolor}			% Allow for color (annotations)
+\usepackage{graphicx}		% To enable including graphics in pdf's
+\usepackage{booktabs}		% Better tables
+\usepackage{tabulary}		% Support longer table cells
+\usepackage{rotating}		% use {sidewaystables} if desired
+\usepackage{fancyvrb}		% Allow \verbatim et al. in footnotes
+\VerbatimFootnotes
+%
+% Typography
+\frenchspacing
+\usepackage{fontspec} 
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Ligatures={Common}]{Skolar PE}
+\setmonofont[Scale=0.8]{Menlo}
+\newfontfamily{\sbl}[Script=Hebrew]{SBLHebrew}
+% SBL Hebrew can be downloaded at http://www.sbl-site.org/educational/BiblicalFonts_SBLHebrew.aspx
+%
+% \usepackage{bidi} (for bidirectional typesetting) must be called near the end of the preamble;
+% see documentation at http://mirror.ctan.org/macros/latex/contrib/bidi/bidi.pdf
+%
+% Swashes, arrows and dots:
+% all of which need the commercial Skolar pan-European font -- http://www.rosettatype.com/Skolar
+\newcommand{\rare}[1]{\fontspec[Ligatures={Rare}]{Skolar PE}\selectfont #1}
+\newcommand{\arrows}[1]{\fontspec[Variant=6]{Skolar PE}\selectfont #1}
+\newcommand{\uppersc}[1]{\fontspec[Letters={UppercaseSmallCaps}]{Skolar PE}\selectfont #1}
+\newcommand{\point}{\unskip~{\arrows T}~\ignorespaces}
+\newcommand{\jst}{\emph{{\rare jst}.st}}
+\newcommand{\step}{\unskip\nobreak\enspace{\arrows -\textbackslash}\enspace\ignorespaces}
+%
+% Ragged marginal notes
+\let\oldmarginpar\marginpar
+\renewcommand\marginpar[1]{\oldmarginpar[\raggedleft\footnotesize %{\arrows v|-.}\\\smallskip
+ #1]{\raggedright\footnotesize %{\arrows .-|v}\\\smallskip
+ #1}}
+%
+% Journal metadata
+\def\journalname{\emph{Journal for Scripture \& Theology}}
+\def\jstdoi{10.5827}
+\def\issn{1925-9506}
+\def\jstcopyright{Copyright \copyright~\jstyear\ JST and the author, released under a \href{http://creativecommons.org/licenses/by-nc/3.0/}{\textsc{cc by-nc 3.0} license}.}
+%
+% Article metadata
+\def\keywords{}
+\def\datesubmitted{\today}
+\def\dateaccepted{TBD}
+\def\datepublished{TBD}
+\def\jstyear{\year}
+\def\jstvol{1}
+\def\jstiss{1}
+\def\firstpage{TK}
+%
+% Other variables & placeholders
+\def\myauthor{Please list A. N. Author}
+\def\institution{TK. The author should provide an institution and/or a place. Titles, URLs and mailing addresses are optional. An email address is optional, too, but strongly encouraged.}
+\def\authoremail{tk.author@institution.edu}
+\def\authornote{}
+\def\shorttitle{TK short title for the running header}
+%
+% Variables specific to reviews
+\def\bookauthor{TK author(s) under review}
+\def\booktitle{TK full title of the book under review}
+\def\bookpublication{TK publication details, e.g.: Oxford Studies in Historical Theology. Oxford/New York: Oxford University Press, 2010. Pp. xiv + 222. Hardcover. \$74.00.}
+\def\shortauthor{\bookauthor}

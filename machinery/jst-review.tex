@@ -1,0 +1,123 @@
+%!TEX encoding = UTF-8 Unicode
+%
+% LaTeX setup for JST book reviews
+% involving things that must follow MMD metadata inputs
+%
+% The DOI
+\def\DOI{\jstdoi/\jstvol-\jstiss.\firstpage}
+%
+% PDF metadata
+\usepackage[bookmarks, colorlinks, breaklinks, pagebackref=true,
+	pdftitle={Review of \bookauthor, \booktitle},
+	pdfauthor={\myauthor},
+	pdfsubject={doi: 10.5827/\jstvol-\jstiss.\firstpage},
+	pdfkeywords={\bookauthor, \keywords},
+	pdfcreator={scripturetheology.ca/jst/\jstvol-\jstiss/\firstpage}
+]{hyperref}  
+\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=MidnightBlue} 
+%
+% Set first page number
+\setcounter{page}{\firstpage}
+%
+% Headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{Review of \shortauthor, \emph{\shorttitle}}
+\fancyhead[RE]{\myauthor}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[C]{\jst\point\uppersc\DOI}
+\renewcommand{\headrule}{\smallskip \hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+% Initial header with full citation
+% NB: Auto-generation of the last page requires the document to be typeset *twice*
+\usepackage{lastpage}
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyhead[L]{
+  \journalname\point\uppersc VOLUME \jstvol, № \jstiss\ (\jstyear) \firstpage\--\pageref*{LastPage}\\
+  ISSN \issn \point DOI \DOI \point \href{http://scripturetheology.ca/jst/\jstvol-\jstiss/\thepage}{scripturetheology.ca/jst/\jstvol-\jstiss/\thepage} }
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\footrulewidth}{0pt}}
+%
+% Bidirectional typesetting -- http://mirror.ctan.org/macros/latex/contrib/bidi/bidi.pdf
+\usepackage{bidi}
+%
+% Custom title environment
+\makeatletter
+\renewcommand\maketitle{\par
+  \begingroup
+    \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
+    \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+    \long\def\@makefntext##1{\parindent 1em\noindent
+            \hb@xt@1.8em{%
+                \hss\@textsuperscript{\normalfont\@thefnmark}}##1}%
+    \if@twocolumn
+      \ifnum \col@number=\@ne
+        \@maketitle
+      \else
+        \twocolumn[\@maketitle]%
+      \fi
+    \else
+      \newpage
+      \global\@topnum\z@   % Prevents figures from going at top of page.
+      \@maketitle
+    \fi
+    \thispagestyle{plain}\@thanks
+  \endgroup
+  \setcounter{footnote}{0}%
+  \global\let\thanks\relax
+  \global\let\maketitle\relax
+  \global\let\@maketitle\relax
+  \global\let\@thanks\@empty
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@title\@empty
+  \global\let\@subtitle\@empty
+  \global\let\title\relax
+  \global\let\subtitle\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\and\relax
+}
+\newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{flushleft}%
+  \let \footnote \thanks
+    {\Large \@title \par}%
+    \if\@subtitle\relax\else{\large\medskip\@subtitle\par}\fi
+    \vskip 1.5em%
+    {\large \lineskip .5em \@author \par}%
+    \vskip 1em%
+    {\footnotesize \@date \par}%
+  \end{flushleft}%
+  \par
+  \vskip 1.5em}
+\makeatother
+%
+\subtitle{}
+%
+% Make the title
+\title{\bookauthor, \emph{\booktitle}
+    \ifthenelse{\equal{\authornote}{}}{}{\thanks{\authornote}} }
+\subtitle{\bookpublication}
+\date{Submitted: \datesubmitted \step Accepted: \dateaccepted \step 
+    Published online: \datepublished. \jstcopyright}
+\author{\MakeUppercase\myauthor 
+    \ifthenelse{\equal{\authoremail}{}}{\thanks{\institution}}
+    {\thanks{\institution \point Email: \href{mailto:\authoremail}{\authoremail}}} }
+%
+% End preamble, begin document
+\begin{document}
+\sloppy % it's not worth being too \fussy for a review
+\maketitle
+\makeatletter
+  \@afterindentfalse
+  \@afterheading
+\makeatother
+
