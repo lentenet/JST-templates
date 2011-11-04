@@ -23,7 +23,11 @@ here, after the metadata and a blank line. It may help to know that we
 use the copy editing marker TK to indicate content that is "to come,"
 including in the metadata. Since the letter combination TK almost never
 occurs in English, changing placeholders is a simple matter of find and
-replace.
+replace.[^authornote]
+
+[^authornote]: Additional fields like `AuthorNote:` are available,
+although in a simple book review it seems unlike that space for
+acknowledgment of support or other credits will be needed.
 
 JST uses Markdown---or MultiMarkdown, to be precise---to turn a single
 master file into a well-built web page and a PDF. Markdown has a few
@@ -34,8 +38,9 @@ as follows.
 
 Put a blank line break between paragraphs. Lines set off with single
 carriage returns 
-like this 
-will be processed into a contiguous paragraph. We may re-wrap
+like this, 
+visible only in the raw 
+file, will be processed into a contiguous paragraph. We may re-wrap
 paragraphs to put line breaks every 72 characters to make it easy to
 reference line numbers in the editorial process.
 
@@ -76,7 +81,7 @@ itself can be placed anywhere in the text file, although it makes sense
 to place it beneath the paragraph in which the note occurs, or at the
 end of the document.
 
-[^footnote1]: A MultiMarkdown footnote work just like a reference style
+[^footnote1]: A MultiMarkdown footnote works just like a reference style
 link in Markdown, used for the wikipedia link above, except that the
 reference marker begins with a circumflex accent (^). The reference can
 by anything you like, such as an author surname, provided it is unique.
